@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
+    defaults:
+      run: { working-directory: ./infra/ }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,13 +26,10 @@ jobs:
           audience: sts.amazonaws.com
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: arn:aws:iam::763671682715:role/GitHubAction-PicklePower
-      # Hello from AWS: WhoAmI
       - name: Sts GetCallerIdentity
         run: |
           aws sts get-caller-identity
       - name: Install CDK dependencies
-        working-directory: ./infra/
         run: npm ci
       - name: Deploy CDK stack
-        working-directory: ./infra/
         run: npx cdk deploy --require-approval never

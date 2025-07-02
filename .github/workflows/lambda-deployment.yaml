@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-
-env:
-  AWS_REGION: "us-west-2"
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -24,7 +20,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4.1.0
         with:
           audience: sts.amazonaws.com
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ "us-west-2" }}
           role-to-assume: arn:aws:iam::763671682715:role/GitHubAction-PicklePower
       - name: Install CDK dependencies
         run: npm ci

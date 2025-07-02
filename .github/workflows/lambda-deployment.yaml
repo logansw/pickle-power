@@ -26,9 +26,9 @@ jobs:
           audience: sts.amazonaws.com
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: arn:aws:iam::763671682715:role/GitHubAction-PicklePower
-      # - name: Sts GetCallerIdentity
-      #   run: |
-      #     aws sts get-caller-identity
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
       - name: Install CDK dependencies
         run: npm ci
       - name: Deploy CDK stack

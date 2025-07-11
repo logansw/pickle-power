@@ -20,7 +20,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4.1.0
         with:
           audience: sts.amazonaws.com
-          aws-region: ${{ "us-west-2" }}
+          aws-region: "us-west-2"
           role-to-assume: arn:aws:iam::763671682715:role/GitHubAction-PicklePower
       - name: Install CDK dependencies
         run: npm ci
